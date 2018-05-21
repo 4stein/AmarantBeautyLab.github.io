@@ -1,0 +1,542 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+
+.hidden
+	display: none
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+b, strong
+	font-weight: bold
+
+
+// **************************************************************************************************************
+
+// ToTopButton
+.top
+	position: fixed
+	bottom: 25px
+	right: -100px
+	background-color: $accent
+	z-index: 9
+	border-radius: 10em
+	color: #fff
+	font-size: 26px
+	width: 50px
+	height: 50px
+	text-align: center
+	line-height: 45px
+	cursor: pointer
+	border: 1px solid $accent
+	transition: all .3s ease
+	opacity: .8
+	&:hover
+		color: $accent
+		background-color: #fff
+		opacity: 1
+	&.active
+		right: 25px
+
+// PRELOADER
+@mixin opacity($opacity)
+	opacity: $opacity / 100
+	filter: alpha(opacity = $opacity)
+@keyframes pulse-outer
+	0%
+		@include opacity(100)
+	50%
+		@include opacity(50)
+	100%
+		@include opacity(0)
+@keyframes pulse-inner
+	0%
+		@include opacity(0)
+		transform: scale(0)
+	100%
+		@include opacity(100)
+		transform: scale(1)
+.preloader
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	z-index: 100
+	background-color: #fff
+	.pulse
+		position: relative
+		left: 50%
+		top: 50vh
+		margin
+			left: -40px
+			top: -40px
+		&::before, &::after
+			content: ''
+			border: 5px solid $accent
+			width: 80px
+			height: 80px
+			border-radius: 500px
+			position: absolute
+		&::before
+			animation: pulse-outer .8s ease-in infinite
+		&::after
+			animation: pulse-inner .8s linear infinite
+
+
+// TOGGLE-MENU
+
+.toggle_mnu
+	width: 60px
+	height: 60px
+	// position: fixed
+	z-index: 100
+	border: none
+	right: 20px
+	top: 20px
+	background-color: transparent
+	span
+		display: block
+
+
+$w: 28px
+$h: 3px
+
+.sandwich 
+	width: $w
+	height: $w
+	// position: absolute
+	top: 8px
+	bottom: 0
+	left: 0
+	right: 0
+	margin: auto
+	z-index: 200
+
+.sw-topper
+	position: relative
+	top: 0
+	width: $w 
+	height: $h
+	background: rgb(0, 0, 0)
+	border: none
+	border-radius: 4px 4px 4px 4px
+	transition: transform 0.5s, top 0.2s
+	display: block
+	
+	//transition-delay: 0.2s, 0s
+
+
+svg
+	path
+		fill: #e0e0e0
+
+.sw-bottom
+	position: relative
+	width: $w
+	height: $h
+	top: $h * 2.2
+	background: rgb(0, 0, 0)
+	border: none
+	border-radius: 4px 4px 4px 4px
+	transition: transform 0.5s, top 0.2s
+	transition-delay: 0.2s, 0s
+.sw-footer
+	position: relative
+	width: $w
+	height: $h
+	top: $h * 4.5
+	background: rgb(0, 0, 0)
+	border: none
+	border-radius: 4px 4px 4px 4px
+	transition: all 0.5s
+	transition-delay: 0.1s
+.sandwich.active
+	.sw-topper
+		top: 9px
+		transform: rotate(-45deg)
+	.sw-bottom
+		top: 6px
+		transform: rotate(45deg)
+	.sw-footer
+		opacity: 0
+		top: 0
+		transform: rotate(180deg)
+
+// NAV
+.nav
+	position: fixed
+	width: 100%
+	height: 100%
+	background-color: rgba(255,255,255,.85)
+	z-index: 50
+	right: 0
+	top: 0
+	display: none
+	ul,
+	li
+		list-style-type: none
+		padding: 0
+		margin: 0
+	ul
+		margin-top: 180px
+		text-align: center
+		a
+			color: #FF5667
+			display: block
+			text-transform: uppercase
+			text-decoration: none
+			font-size: 16px
+			transition: color .75s ease
+			&:hover
+				color: #000
+
+			// opacity: 0
+			position: relative
+			height: 60px
+			outline: none
+			z-index: 999
+			span
+				display: block
+				position: relative
+				top: -40px
+				left: 0
+				height: 100%
+				+transition(all 0.7s ease)
+				&:hover
+					background-color: rgba(255,255,255,.09)
+
+// **************************************************************************************************************
+
+
+
+// HEADER
+.header
+	// background-color: $accent
+	background-image: url(../img/slider_img.png)
+
+	// TOP-LINE
+	.header__top__line
+		background-image: url(../img/header_line_fon.png)
+		height: 65px
+		// FIXED-HEADER-LINE
+		position: fixed
+		width: 100%
+		z-index: 10
+	.button_nav
+		font-family: bookman-old-style
+		line-height: 65px
+		color: #000
+		font-size: 26px
+		&:hover
+			color: $text
+	.header__top__line__social
+		line-height: 65px
+		.social__button
+			display: inline-block
+			text-align: center
+			line-height: 26px
+			margin-right: 3px
+			width: 26px
+			height: 26px
+			font-size: 16px
+			border-radius: 7px
+			color: #fff
+			background-color: #222
+			&:hover
+				color: $accent
+	.header__top__line__address
+		margin-top: 6px
+		.fa
+			margin-right: 5px
+		p
+			margin: 0
+			padding: 0
+			color: $text
+	.header__top__line__button
+		margin-top: 16px
+		button
+			display: block
+			height: 30px
+			background-color: #fff
+			opacity: .5
+			text-transform: uppercase
+			padding: 0 12px
+			border: 0
+			border: 1px solid #000
+			border-radius: 7px
+			transition: background-color .5s ease, color .5s ease, border .25s ease, opacity .25s
+			&:hover
+				background-color: $accent
+				color: #fff
+				border: 1px solid #fff
+				opacity: 1
+
+// SLIDER
+.slider
+	min-height: 100vh
+	// min-height: 90vh
+
+// SERVICE
+.services
+	margin-top: 70px
+	.h2
+		display: block
+		width: 100px
+		margin: 0 auto
+		position: relative
+		font-family: andantino-script
+		text-align: center
+		font-size: 40px
+		color: $accent
+		padding-bottom: 10px
+		margin-bottom: 100px
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: -22px
+			width: 150px
+			padding: 0 22px 10px
+			border-bottom: 2px solid $accent
+	// ITEMS
+	.services__item
+		position: relative
+		margin: 0 auto
+		width: 470px
+		height: 422px
+		// background-color: #222
+		margin-bottom: 80px
+		.services__item__content
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background-color: rgba(0,0,0, .65)
+			text-align: center
+			opacity: 0
+			transition: all 1s ease
+			&:hover
+				padding-top: 32%
+				opacity: 1
+			h3
+				font-family: bookman-old-style
+				font-size: 21px
+				font-weight: 600
+				letter-spacing: 5px
+				color: #fff
+				text-transform: uppercase
+			a
+				display: inline-block
+				width: 200px
+				// margin: 0 auto
+				text-decoration: none
+				cursor: pointer
+				font-family: bookman-old-style
+				color: #fff
+				background-color: transparent
+				border: none
+				border: 1px solid #fff
+				border-radius: 10px
+				padding: 5px 25px
+				margin-top: 50px
+				transition: color .5s ease, border .25s ease
+				&:hover
+					// background-color: #fff
+					color: $accent
+					border-color: $accent
+					opacity: .95
+.services__item__description
+	position: relative
+	background-color: #fff
+	max-width: 500px
+	margin: auto
+	p,
+	h3
+		padding: 20px
+		margin-bottom: 0
+	h3
+		text-align: center
+		padding-bottom: 10px
+		font-family: bookman-old-style
+		font-size: 21px
+		font-weight: 600
+		letter-spacing: 5px
+	p
+		font-family: bookman-old-style
+		margin-top: 0
+	.mfp-close
+		position: absolute
+		right: 0
+.services__item__description
+	strong
+		float: right
+
+
+
+.instagram
+	position: relative
+	// margin-top: -25px
+	.h2
+		display: block
+		width: 236px
+		margin: 0 auto
+		position: relative
+		font-family: andantino-script
+		text-align: center
+		font-size: 40px
+		color: $accent
+		padding-bottom: 10px
+		margin-bottom: 100px
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: 0
+			width: 240px
+			padding: 0 22px 10px
+			border-bottom: 2px solid $accent
+	img
+		width: 100%
+
+	.instagram__buttom
+		position: absolute
+		padding: 5px 15px
+		background-color: #fa97c2
+		color: #fff
+		border-radius: 7px
+		text-decoration: none
+		text-align: center
+		left: 43%
+		top: 55%
+		transition: background-color .5s ease, color .5s ease, border .25s ease
+		&:hover
+			background-color: #fff
+			color: $text
+			border: 1px solid $text
+
+// CONTACTS
+.contacts
+	margin-top: 100px
+	.h2
+		display: block
+		width: 165px
+		margin: 0 auto
+		position: relative
+		font-family: andantino-script
+		text-align: center
+		font-size: 40px
+		color: $accent
+		padding-bottom: 10px
+		margin-bottom: 100px
+		&::after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: -22px
+			width: 210px
+			padding: 0 22px 10px
+			border-bottom: 2px solid $accent
+	.contact__item
+		margin-bottom: 50px
+		.fa
+			font-size: 48px
+			color: $accent
+		h4
+			margin-top: 5px
+			font-size: 21px
+			color: #000
+			font-weight: normal
+			text-transform: uppercase
+		&:nth-child(3)
+			margin-bottom: 0
+
+	// CONTACT-FORM
+	.contact__form
+		padding-top: 50px
+		background-color: $accent
+		text-align: center
+		h3
+			margin-bottom: 30px
+			font-family: andantino-script
+			font-size: 30px
+			color: #fff
+		span
+			text-align: left
+			margin-bottom: 10px
+			margin-right: 180px
+			color: #fff
+		.form__span__two
+			margin-right: 155px!important
+		.form__span__three
+			margin-right: 175px!important
+		input
+			margin-top: 10px
+			margin-bottom: 10px
+			width: 270px
+			border: none
+		.form__button
+			margin-top: 30px
+			margin-bottom: 50px
+			width: 165px
+			height: 36px
+			background-color: $accent
+			color: #fff
+			border: 1px solid #fff
+			border-radius: 10px
+			transition: background-color .5s ease, color .5s ease, border .25s ease
+			&:hover
+				background-color: #fff
+				color: $accent
+
+// FOOTER
+.footer
+	margin-top: 100px
+	background-color: #4a4a4a
+	height: 150px
+	.footer__logo
+		line-height: 150px
+		text-align: center
+
+
+
+
+		
+
+
+
+
+
+@import "media" // Always at the end

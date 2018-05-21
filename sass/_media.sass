@@ -1,0 +1,74 @@
+@import "vars"
+
+
+/*==========  Desktop First  ==========*/
+
+// ≥1200px
++media-breakpoint-down(lg)
+	.header__top__line__address
+		p
+			font-size: 14px
+	.services .services__item
+		margin-bottom: 20px
+	div.services__item
+		width: 100%!important
+// ≥992px
++media-breakpoint-down(md)
+	.header__top__line__address
+		display: none
+	
+	
+// ≥768px
++media-breakpoint-down(sm)
+	.header__top__line__social
+		display: none
+	.contact__item
+		text-align: center
+	.contact__form
+		margin-top: 40px
+	.services
+		margin-top: 30px
+		.h2
+			margin-bottom: 60px
+	.instagram
+		margin-top: 15px
+		.h2
+			margin-bottom: 60px
+	.contacts
+		margin-top: 30px
+		.h2
+			margin-bottom: 60px
+	div#instagram
+		margin-top: -100px
+	div#services
+		margin-top: -50px
+	div#contacts
+		margin-top: -60px
+
+// ≥576px
++media-breakpoint-down(xs)
+	.logo
+		img
+			margin-left: 10px
+			margin-top: 7px
+			width: 170%
+
+/*==========  Mobile First  ==========*/
+
+// ≤576px
++media-breakpoint-up(sm)
+
+// ≤768px
++media-breakpoint-up(md)
+	
+// ≤992px
++media-breakpoint-up(lg)
+	.header
+		.row
+			display: flex
+			div:nth-child(5)
+				order: 1
+			div:nth-child(5)
+				order: 2
+// ≤1200px
++media-breakpoint-up(xl)
